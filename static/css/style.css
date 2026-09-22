@@ -1,0 +1,84 @@
+/* Task Statistics */
+.task-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 40px auto;
+    max-width: 900px;
+}
+
+.stat-box {
+    flex: 1;
+    max-width: 250px;
+    padding: 25px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+    color: #222;
+}
+
+.total-box {
+    border-top: 4px solid #007bff;
+}
+
+.ongoing-box {
+    border-top: 4px solid #e22a2a;
+}
+
+.completed-box {
+    border-top: 4px solid #28a745;
+}
+
+/* Rounded Table Container */
+.task-table {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+}
+
+/* Make the table fill the rounded container */
+.task-table table {
+    margin-bottom: 0;
+}
+
+/* Rounded top corners of table header */
+.task-table thead th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.task-table thead th:last-child {
+    border-top-right-radius: 20px;
+}
+
+/* Rounded bottom corners */
+.task-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 20px;
+}
+
+.task-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 20px;
+}
+
+@media (max-width: 700px) {
+    .task-stats {
+        flex-direction: column;
+    }
+
+    .stat-box {
+        width: 80%;
+    }
+}
