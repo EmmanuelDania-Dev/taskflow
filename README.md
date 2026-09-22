@@ -5,13 +5,13 @@ A full-stack task management application that allows users to create personal ac
 ## Screenshots
 
 ### Registration 
-![TaskFlow Registration](screenshots/Registration page.png)
+![TaskFlow Registration](screenshots/Registration-page.png)
 
 ### Add Task
-![TaskFlow Add Task](screenshots/add task page.png)
+![TaskFlow Add Task](screenshots/add-task-page.png)
 
 ### View Tasks
-![TaskFlow View Tasks](screenshots/view tasks page.png)
+![TaskFlow View Tasks](screenshots/view-tasks-page.png)
 
 ## Features
 
@@ -48,7 +48,7 @@ Account deletion
 ## Getting Started
 
 **Clone the Repository**
-git clone <your-repository-url>
+git clone https://github.com/EmmanuelDania-Dev/taskflow.git
 cd TaskFlow
 
 **Install Dependencies**
