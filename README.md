@@ -2,6 +2,17 @@
 
 A full-stack task management application that allows users to create personal accounts, manage their tasks, and manage their accounts.
 
+## Screenshots
+
+### Registration 
+![TaskFlow Registration](screenshots/Registration page.png)
+
+### Add Task
+![TaskFlow Add Task](screenshots/add task page.png)
+
+### View Tasks
+![TaskFlow View Tasks](screenshots/view tasks page.png)
+
 ## Features
 
 User registration and login
