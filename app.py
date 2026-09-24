@@ -10,6 +10,11 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
+def get_db():
+    connection = sqlite3.connect("tasks.db")
+    connection.row_factory = sqlite3.Row
+    return connection
+
 @app.route('/', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -21,7 +26,7 @@ def register():
             flash("Inputs cannot be empty!!", "danger")
             return redirect(url_for("register"))
 
-        connection = sqlite3.connect("tasks.db")
+        connection = get_db()
         value_exists = connection.execute("""
             SELECT EXISTS(
                 SELECT 1
@@ -60,8 +65,7 @@ def login():
             flash("Inputs cannot be empty!!", "warning")
             return redirect(url_for("login"))
 
-        connection = sqlite3.connect("tasks.db")
-        connection.row_factory = sqlite3.Row
+        connection = get_db()
         user = connection.execute("""
             SELECT * FROM users
             WHERE email = ?
@@ -93,8 +97,7 @@ def add_task():
 
     user_id = session["user_id"]
 
-    connection = sqlite3.connect("tasks.db")
-    connection.row_factory = sqlite3.Row
+    connection = get_db()
 
     user = connection.execute(
         "SELECT username FROM users WHERE id = ?",
@@ -118,7 +121,7 @@ def add_task():
             flash("Title or Description cannot be empty", "warning")
             return redirect(url_for("add_task"))
 
-        connection = sqlite3.connect("tasks.db")
+        connection = get_db()
 
         connection.execute("""
             INSERT INTO tasks (title, description, user_id)
@@ -140,8 +143,7 @@ def display():
 
     user_id = session["user_id"]
     
-    connection = sqlite3.connect("tasks.db")
-    connection.row_factory = sqlite3.Row
+    connection = get_db()
 
     tasks = connection.execute("SELECT * FROM tasks WHERE user_id = ?", (user_id,)).fetchall()
 
@@ -164,7 +166,7 @@ def completed(id):
         return redirect(url_for("display"))
     user_id = session["user_id"]
 
-    connection = sqlite3.connect("tasks.db")
+    connection = get_db()
 
     connection.execute("""
         UPDATE tasks
@@ -185,8 +187,7 @@ def edit(id):
         return redirect(url_for("display"))
     user_id = session["user_id"]
 
-    connection = sqlite3.connect("tasks.db")
-    connection.row_factory = sqlite3.Row
+    connection = get_db()
 
     if request.method == "POST":
         title = request.form.get("title", "").strip()
@@ -224,7 +225,7 @@ def delete(id):
         return redirect(url_for("display"))
     user_id = session["user_id"]
 
-    connection = sqlite3.connect("tasks.db")
+    connection = get_db()
 
     connection.execute("""
         DELETE FROM tasks
@@ -243,7 +244,7 @@ def delete_account():
         return redirect(url_for("login"))
     user_id = session["user_id"]
 
-    connection = sqlite3.connect("tasks.db")
+    connection = get_db()
 
     connection.execute("""
         DELETE FROM tasks
